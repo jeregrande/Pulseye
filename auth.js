@@ -12,7 +12,7 @@ const uiConfig = {
         },
     },
     signInFlow: 'popup',
-    signInSuccessUrl: 'signedIn',
+    signInSuccessUrl: 'home.html', //Default: signedIn
     signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
