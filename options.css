@@ -24,27 +24,21 @@ body {
     padding: 1em;
 }
 
-.networks-row-container {
-    margin-left: 1em;
-    margin-right: 1em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    border-bottom: solid 2px grey;
+#pulseye-h4 {
+    padding: .3em;
 }
 
-#cardContainer {
-    margin-bottom: 3em;
+#card-history {
+    margin-top: 5em;
+    margin-bottom: 5em;
 }
 
-.card {
-    margin-bottom: 1em;
-    border-radius: 1em;
-    border-width: .3em;
-    border-color: #008F0E;
+#network-list {
+    margin-bottom: 5em;
 }
 
-#card-column-values {
-    font-weight: bold;
+#profile-form {
+    padding-bottom: 50vh;
 }
 
 

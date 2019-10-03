@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="home.css">
+    <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
@@ -18,19 +19,30 @@
         <nav class="navbar navbar-expand-sm navbar-light">
             <div class="container">
 
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="nav-container">
-                    <div class="collapse navbar-collapse" id="mainNav">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link active" href="home.html">Home</a>
-                            <a class="nav-item nav-link" href="#">Planner</a>
-                            <a class="nav-item nav-link" href="#">History</a>
-                            <a class="nav-item nav-link" href="#">Profile</a>
-                            <a class="nav-item nav-link" href="index.html">Sign Out</a>
-                        </div>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <div class="navbar-nav">
+                        <!-- Home, planner, history nav options -->
+                        <a class="nav-item nav-link active" href="home.html">Home</a>
+                        <a class="nav-item nav-link" href="#">Planner</a>
+                        <a class="nav-item nav-link" href="history.html">History</a>
+
+                        <!-- Options dropdown nav menu -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Options
+                                </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="index.html">Sign Out</a>
+                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                <a class="dropdown-item" href="addNetwork.html">Add Pulseye Network</a>
+                                <a class="dropdown-item" href="editNetwork.html">Edit Pulseye Network</a>
+                                <a class="dropdown-item" href="removeNetwork.html">Remove Pulseye Network</a>
+                            </div>
+                        </li>
                     </div>
                 </div>
             </div>
@@ -67,7 +79,9 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-labels">
-                                    <li class="list-group-item">Current: </li>
+                                    <li class="list-group-item">
+                                        <h5>Current: </h5>
+                                    </li>
                                     <li class="list-group-item">High: </li>
                                     <li class="list-group-item">Low: </li>
                                 </ul>
@@ -75,7 +89,9 @@
 
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
-                                    <li class="list-group-item">25°</li>
+                                    <li class="list-group-item">
+                                        <h5>25°</h5>
+                                    </li>
                                     <li class="list-group-item">26°</li>
                                     <li class="list-group-item">24°</li>
                                 </ul>
@@ -102,7 +118,9 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-labels">
-                                    <li class="list-group-item">Current: </li>
+                                    <li class="list-group-item">
+                                        <h5>Current:</h5>
+                                    </li>
                                     <li class="list-group-item">High: </li>
                                     <li class="list-group-item">Low: </li>
                                 </ul>
@@ -110,7 +128,9 @@
 
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
-                                    <li class="list-group-item">10%</li>
+                                    <li class="list-group-item">
+                                        <h5>10%</h5>
+                                    </li>
                                     <li class="list-group-item">11%</li>
                                     <li class="list-group-item">9%</li>
                                 </ul>
@@ -137,9 +157,11 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-labels">
-                                    <li class="list-group-item">Current:&nbsp&nbsp&nbsp&nbsp</li>
-                                    <li class="list-group-item">High:&nbsp&nbsp&nbsp&nbsp</li>
-                                    <li class="list-group-item">Low:&nbsp&nbsp&nbsp&nbsp</li>
+                                    <li class="list-group-item">
+                                        <h5>Current:</h5>
+                                    </li>
+                                    <li class="list-group-item">High:</li>
+                                    <li class="list-group-item">Low:</li>
                                 </ul>
                             </div>
 
@@ -172,7 +194,9 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-labels">
-                                    <li class="list-group-item">Active Stakes: </li>
+                                    <li class="list-group-item">
+                                        <h5>Active Stakes: </h5>
+                                    </li>
                                     <li class="list-group-item">Last update: </li>
                                     <li class="list-group-item">Next update: </li>
                                 </ul>
@@ -180,7 +204,9 @@
 
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
-                                    <li class="list-group-item">10</li>
+                                    <li class="list-group-item">
+                                        <h5>10</h5>
+                                    </li>
                                     <li class="list-group-item">12:30</li>
                                     <li class="list-group-item">13:30</li>
                                 </ul>
