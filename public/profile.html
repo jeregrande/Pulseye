@@ -7,66 +7,73 @@
     <title>Pulseye</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="css/options.css">
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
     <!-- Navbar block -->
-    <div class="d-flex justify-content-between navbar-dark" id="pineapple" style="background-color: #008F0E">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #008F0E">
         <!-- Navbar brand -->
         <a class="navbar-brand" href="home.html">Pulseye</a>
-        <nav class="navbar navbar-expand-sm navbar-light">
-            <div class="container">
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <div class="navbar-nav">
-                        <!-- Home, planner, history nav options -->
-                        <a class="nav-item nav-link" href="home.html">Home</a>
-                        <a class="nav-item nav-link" href="#">Planner</a>
-                        <a class="nav-item nav-link" href="history.html">History</a>
-
-                        <!-- Options dropdown nav menu -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Options
-                                </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="index.html">Sign Out</a>
-                                <a class="dropdown-item" href="profile.html">My Profile</a>
-                                <a class="dropdown-item" href="addNetwork.html">Add Pulseye Network</a>
-                                <a class="dropdown-item" href="editNetwork.html">Edit Pulseye Network</a>
-                                <a class="dropdown-item" href="removeNetwork.html">Remove Pulseye Network</a>
-                            </div>
-                        </li>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="history.html">History</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Options
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="index.html">Sign Out</a>
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="addNetwork.html">Add Pulseye Network</a>
+                        <a class="dropdown-item" href="editNetwork.html">Edit Pulseye Network</a>
+                        <a class="dropdown-item" href="removeNetwork.html">Remove Pulseye Network</a>
                     </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <!--- Pulseye Networks Header -->
+    <!--- Profile Page Header -->
     <div class="text-center" id="pulseye-h1">
         <h1>My Profile</h1>
     </div>
 
-    <div class="container">
-        <form id="profile-form">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">Enter your new email address.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    <!-- Edit info forms-->
+    <div class="container" id="profile-form-container">
+        <div class="container">
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New email">
+                    <small id="emailHelp" class="form-text text-muted">Enter your new email address.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <!-- Edit info form-->
+        <div class="container">
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="New password">
+                    <small id="emailHelp" class="form-text text-muted">Enter your new password.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
 
 
