@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pulseye</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/options.css">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- Navbar block -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #008F0E">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="home.html">Pulseye</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="planner.html">Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="history.html">History</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Options
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="index.html">Sign Out</a>
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="addNetwork.html">Add Pulseye Network</a>
+                        <a class="dropdown-item" href="editNetwork.html">Edit Pulseye Network</a>
+                        <a class="dropdown-item" href="removeNetwork.html">Remove Pulseye Network</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--- Planner Header -->
+    <div class="text-center" id="pulseye-h1">
+        <h1>Irrigation Planner</h1>
+    </div>
+
+    <div class="container">
+        <p>Enter a ZIP to see an estimate of how much water is recommended for a watering session.</p>
+    </div>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="newNetworkId">Enter ZIP</label>
+                <input type="number" class="form-control" id="newNetworkZip" placeholder="Example: 95112" max="9999">
+            </div>
+
+            <div class="container" id="radio-group">
+
+                <p>Choose a time frame:</p>
+
+                <!-- Group of default radios - option 1 -->
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios">
+                    <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
+                </div>
+
+                <!-- Group of default radios - option 2 -->
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
+                    <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
+                </div>
+
+                <!-- Group of default radios - option 3 -->
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
+                    <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="planner-button">Submit</button>
+        </form>
+
+        <div class="container col-sm-12 col-md-12 col-lg-12" id="plannerCard">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Irrigation Calculator</h5>
+                    <form>
+                        <div class="form-group">
+                            <label for="temperatureInput">Temperature</label>
+                            <input type="number" class="form-control" id="temperatureID" placeholder="Enter temperature" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="moistureInput">Moisture</label>
+                            <input type="number" class="form-control" id="moistureID" placeholder="Enter moisture" value="0">
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" onclick="calculateAmount()">Calculate</button>
+
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h5 class="waterAmount-label"><br>Water to use:</h5>
+                            </div>
+                            <div class="col-sm">
+                                <h5 class="waterAmount-value" id="waterValueAmount"><br>N/A</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <script>
+        //Algorithm derived from a simplification of the ASCE-EWRI standardized reference ET equation
+        function calculateAmount() {
+            //Evapotranspiration variables
+            var moisture = document.getElementById("moistureID").value;
+            var T = document.getElementById("temperatureID").value; //Daily average temperature in C
+            var R = 216; //Radiation at surface, in MJ/((m^2)(day))
+            var G = R * .95; //Soil heat flux density, in MJ/((m^2)(day))
+            var U = 0; //Average daily wind speed in m/s
+            var Y = .000665; //Psychrometric constant
+            var D = 1;
+
+            //Irrigation algorithm
+            var irrigationAmount = (1 + T / 8) * (D * (.408) * (R - G)) / (Y + D + (moisture * 0.5));
+            var displayAmount = irrigationAmount.toFixed(2);
+
+            document.getElementById("waterValueAmount").innerHTML = "<br>" + displayAmount + " Liters/m^2";
+        }
+    </script>
+
+    <!--- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; Pulseye 2019</p>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

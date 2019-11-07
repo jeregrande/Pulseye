@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script>
+    firebase.auth().onAuthStateChanged(function(user) {
+        // [START_EXCLUDE silent]
+        document.getElementById('quickstart-verify-email').disabled = true;
+        // [END_EXCLUDE]
+        if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var uid = user.uid;
+            var providerData = user.providerData;
+
+            // [START_EXCLUDE]
+            document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+            document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+            document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+            if (!emailVerified) {
+                document.getElementById('quickstart-verify-email').disabled = false;
+            }
+            // [END_EXCLUDE]
+        } else {
+            // User is signed out
+            // [START_EXCLUDE]
+            document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+            document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+            document.getElementById('quickstart-account-details').textContent = 'null';
+            // [END_EXCLUDE]
+        }
+        // [START_EXCLUDE silent]
+        document.getElementById('quickstart-sign-in').disabled = false;
+        // [END_EXCLUDE]
+    });
+</script>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +60,7 @@
                     <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Planner</a>
+                    <a class="nav-link" href="planner.html">Planner</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="history.html">History</a>
@@ -107,7 +142,7 @@
                         <div class="overlay-container" id="card-overlay">
                             <img src="img/humidity.png" alt="Humidity" class="class-img-top img-fluid">
                             <div class="overlay">
-                                <div class="text">Humidity (Percent)</div>
+                                <div class="text">Humidity (%)</div>
                             </div>
                         </div>
 
@@ -137,16 +172,16 @@
                 </div>
             </div>
 
-            <!-- Radiation card block -->
+            <!-- Moisture card block -->
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card">
                     <div class="card-body">
 
                         <!-- Container for the image overlay in the card -->
                         <div class="overlay-container" id="card-overlay">
-                            <img src="img/radiation.jpg" alt="Solar Radiation" class="class-img-top img-fluid">
+                            <img src="img/moisture.png" alt="Moisture" class="class-img-top img-fluid">
                             <div class="overlay">
-                                <div class="text">Solar Radiation (Watts)</div>
+                                <div class="text">Soil Moisture (%)</div>
                             </div>
                         </div>
 
@@ -164,9 +199,9 @@
 
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
-                                    <li class="list-group-item">1.2 W/m²</li>
-                                    <li class="list-group-item">1.5 W/m²</li>
-                                    <li class="list-group-item">0.9 W/m²</li>
+                                    <li class="list-group-item">32%</li>
+                                    <li class="list-group-item">49%</li>
+                                    <li class="list-group-item">11%</li>
                                 </ul>
                             </div>
                         </div>
@@ -216,6 +251,177 @@
         </div>
     </div>
 
+    <!--- Network Rows -->
+    <div class="networks-row-container" id="cardContainer">
+        <!-- Network row header -->
+        <div class="text-left" id="network-row-header">
+            <h3>Front Lawn</h3>
+        </div>
+
+        <div class="row ">
+            <!-- Temperature card block -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Container for the image overlay in the card -->
+                        <div class="overlay-container" id="card-overlay">
+                            <img src="img/thermometer.png" alt="Temperature" class="class-img-top img-fluid">
+                            <div class="overlay">
+                                <div class="text">Temperature (Celsius)</div>
+                            </div>
+                        </div>
+
+                        <!-- Information section in cards -->
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-labels">
+                                    <li class="list-group-item">
+                                        <h5>Current: </h5>
+                                    </li>
+                                    <li class="list-group-item">High: </li>
+                                    <li class="list-group-item">Low: </li>
+                                </ul>
+                            </div>
+
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-values">
+                                    <li class="list-group-item">
+                                        <h5>25°</h5>
+                                    </li>
+                                    <li class="list-group-item">26°</li>
+                                    <li class="list-group-item">24°</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Humidity card block -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Container for the image overlay in the card -->
+                        <div class="overlay-container" id="card-overlay">
+                            <img src="img/humidity.png" alt="Humidity" class="class-img-top img-fluid">
+                            <div class="overlay">
+                                <div class="text">Humidity (%)</div>
+                            </div>
+                        </div>
+
+                        <!-- Information section in cards -->
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-labels">
+                                    <li class="list-group-item">
+                                        <h5>Current:</h5>
+                                    </li>
+                                    <li class="list-group-item">High: </li>
+                                    <li class="list-group-item">Low: </li>
+                                </ul>
+                            </div>
+
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-values">
+                                    <li class="list-group-item">
+                                        <h5>10%</h5>
+                                    </li>
+                                    <li class="list-group-item">11%</li>
+                                    <li class="list-group-item">9%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moisture card block -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Container for the image overlay in the card -->
+                        <div class="overlay-container" id="card-overlay">
+                            <img src="img/moisture.png" alt="Moisture" class="class-img-top img-fluid">
+                            <div class="overlay">
+                                <div class="text">Soil Moisture (%)</div>
+                            </div>
+                        </div>
+
+                        <!-- Information section in cards -->
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-labels">
+                                    <li class="list-group-item">
+                                        <h5>Current:</h5>
+                                    </li>
+                                    <li class="list-group-item">High:</li>
+                                    <li class="list-group-item">Low:</li>
+                                </ul>
+                            </div>
+
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-values">
+                                    <li class="list-group-item">28%</li>
+                                    <li class="list-group-item">46%</li>
+                                    <li class="list-group-item">14%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status card block -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Container for the image overlay in the card -->
+                        <div class="overlay-container" id="card-overlay">
+                            <img src="img/status.png" alt="Temperature" class="class-img-top img-fluid">
+                            <div class="overlay">
+                                <div class="text">Network Status</div>
+                            </div>
+                        </div>
+
+                        <!-- Information section in cards -->
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-labels">
+                                    <li class="list-group-item">
+                                        <h5>Active Stakes: </h5>
+                                    </li>
+                                    <li class="list-group-item">Last update: </li>
+                                    <li class="list-group-item">Next update: </li>
+                                </ul>
+                            </div>
+
+                            <div class="col">
+                                <ul class="list-group list-group-flush" id="card-column-values">
+                                    <li class="list-group-item">
+                                        <h5>10</h5>
+                                    </li>
+                                    <li class="list-group-item">12:30</li>
+                                    <li class="list-group-item">13:30</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; Pulseye 2019</p>
+        </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -223,10 +429,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-
-<!--- Footer -->
-<footer class="container text-center col-sm-12 col-md-12 col-lg-12 footer">
-    <p>&copy; Pulseye 2019</p>
-</footer>
 
 </html>
