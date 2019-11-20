@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
 <script>
     firebase.auth().onAuthStateChanged(function(user) {
         // [START_EXCLUDE silent]
@@ -35,6 +36,7 @@
         // [END_EXCLUDE]
     });
 </script>
+-->
 
 <head>
     <meta charset="utf-8">
@@ -44,6 +46,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/home.css">
     <link rel="shortcut icon" href="favicon.ico">
+
+    <!--Firebase scripts-->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -90,7 +96,7 @@
     <div class="networks-row-container" id="cardContainer">
         <!-- Network row header -->
         <div class="text-left" id="network-row-header">
-            <h3>Backyard Network</h3>
+            <h3 id="networkID1">[Inactive network]</h3>
         </div>
 
         <div class="row ">
@@ -122,10 +128,10 @@
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
                                     <li class="list-group-item">
-                                        <h5>25°</h5>
+                                        <h5 id="currentTemp1">--°</h5>
                                     </li>
-                                    <li class="list-group-item">26°</li>
-                                    <li class="list-group-item">24°</li>
+                                    <li class="list-group-item" id="highTemp1">--°</li>
+                                    <li class="list-group-item" id="lowTemp1">--°</li>
                                 </ul>
                             </div>
                         </div>
@@ -161,10 +167,10 @@
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
                                     <li class="list-group-item">
-                                        <h5>10%</h5>
+                                        <h5>xx%</h5>
                                     </li>
-                                    <li class="list-group-item">11%</li>
-                                    <li class="list-group-item">9%</li>
+                                    <li class="list-group-item">xx%</li>
+                                    <li class="list-group-item">xx%</li>
                                 </ul>
                             </div>
                         </div>
@@ -199,9 +205,9 @@
 
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
-                                    <li class="list-group-item">32%</li>
-                                    <li class="list-group-item">49%</li>
-                                    <li class="list-group-item">11%</li>
+                                    <li class="list-group-item">xx%</li>
+                                    <li class="list-group-item">xx%</li>
+                                    <li class="list-group-item">xx%</li>
                                 </ul>
                             </div>
                         </div>
@@ -237,10 +243,10 @@
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
                                     <li class="list-group-item">
-                                        <h5>10</h5>
+                                        <h5>xx</h5>
                                     </li>
-                                    <li class="list-group-item">12:30</li>
-                                    <li class="list-group-item">13:30</li>
+                                    <li class="list-group-item">xx:xx</li>
+                                    <li class="list-group-item">xx:xx</li>
                                 </ul>
                             </div>
                         </div>
@@ -287,10 +293,10 @@
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
                                     <li class="list-group-item">
-                                        <h5>25°</h5>
+                                        <h5>xx°</h5>
                                     </li>
-                                    <li class="list-group-item">26°</li>
-                                    <li class="list-group-item">24°</li>
+                                    <li class="list-group-item">xx°</li>
+                                    <li class="list-group-item">xx°</li>
                                 </ul>
                             </div>
                         </div>
@@ -326,10 +332,10 @@
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
                                     <li class="list-group-item">
-                                        <h5>10%</h5>
+                                        <h5>xx%</h5>
                                     </li>
-                                    <li class="list-group-item">11%</li>
-                                    <li class="list-group-item">9%</li>
+                                    <li class="list-group-item">xx%</li>
+                                    <li class="list-group-item">xx%</li>
                                 </ul>
                             </div>
                         </div>
@@ -364,9 +370,9 @@
 
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
-                                    <li class="list-group-item">28%</li>
-                                    <li class="list-group-item">46%</li>
-                                    <li class="list-group-item">14%</li>
+                                    <li class="list-group-item">xx%</li>
+                                    <li class="list-group-item">xx%</li>
+                                    <li class="list-group-item">xx%</li>
                                 </ul>
                             </div>
                         </div>
@@ -402,10 +408,10 @@
                             <div class="col">
                                 <ul class="list-group list-group-flush" id="card-column-values">
                                     <li class="list-group-item">
-                                        <h5>10</h5>
+                                        <h5>xx</h5>
                                     </li>
-                                    <li class="list-group-item">12:30</li>
-                                    <li class="list-group-item">13:30</li>
+                                    <li class="list-group-item">xx:xx</li>
+                                    <li class="list-group-item">xx:xx</li>
                                 </ul>
                             </div>
                         </div>
@@ -424,6 +430,10 @@
     </footer>
 
     <!-- Optional JavaScript -->
+
+    <!-- Import firebase js file-->
+    <script src="js/home.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

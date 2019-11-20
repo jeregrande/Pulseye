@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/options.css">
     <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
 <body>
@@ -52,39 +53,85 @@
     </div>
 
     <div class="container">
-        <p>Enter a ZIP to see an estimate of how much water is recommended for a watering session.</p>
-    </div>
-    <div class="container">
         <form>
             <div class="form-group">
-                <label for="newNetworkId">Enter ZIP</label>
+                <label for="newNetworkId">Enter a ZIP to see an estimate of recommended water per irrigation session.</label>
                 <input type="number" class="form-control" id="newNetworkZip" placeholder="Example: 95112" max="9999">
             </div>
 
+            <!-- Time frame radio group
             <div class="container" id="radio-group">
-
                 <p>Choose a time frame:</p>
 
-                <!-- Group of default radios - option 1 -->
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios">
                     <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
                 </div>
 
-                <!-- Group of default radios - option 2 -->
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
                     <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
                 </div>
 
-                <!-- Group of default radios - option 3 -->
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
                     <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary" id="planner-button">Submit</button>
+        -->
+            <button class="btn btn-primary" id="planner-button">Submit</button>
         </form>
+
+        <div class="container col-sm-8 col-md-8 col-lg-8" id="plannerCard">
+            <div class="card">
+                <canvas id="myChart" width="400" height="400"></canvas>
+                <div class="card-body">
+                    <h5 class="card-title">Cool chart</h5>
+                    <p class="card-text">Planner chart coming soon</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Thingies',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
 
         <div class="container col-sm-12 col-md-12 col-lg-12" id="plannerCard">
             <div class="card">
@@ -92,11 +139,11 @@
                     <h5 class="card-title">Irrigation Calculator</h5>
                     <form>
                         <div class="form-group">
-                            <label for="temperatureInput">Temperature</label>
+                            <label for="temperatureInput">Temperature (C°)</label>
                             <input type="number" class="form-control" id="temperatureID" placeholder="Enter temperature" value="0">
                         </div>
                         <div class="form-group">
-                            <label for="moistureInput">Moisture</label>
+                            <label for="moistureInput">Moisture (%)</label>
                             <input type="number" class="form-control" id="moistureID" placeholder="Enter moisture" value="0">
                         </div>
                     </form>
@@ -128,8 +175,8 @@
             //Evapotranspiration variables
             var moisture = document.getElementById("moistureID").value;
             var T = document.getElementById("temperatureID").value; //Daily average temperature in C
-            var R = 216; //Radiation at surface, in MJ/((m^2)(day))
-            var G = R * .95; //Soil heat flux density, in MJ/((m^2)(day))
+            var R = 216; //Radiation at surface, in MJ/((m²)(day))
+            var G = R * .95; //Soil heat flux density, in MJ/((m²)(day))
             var U = 0; //Average daily wind speed in m/s
             var Y = .000665; //Psychrometric constant
             var D = 1;
@@ -138,7 +185,7 @@
             var irrigationAmount = (1 + T / 8) * (D * (.408) * (R - G)) / (Y + D + (moisture * 0.5));
             var displayAmount = irrigationAmount.toFixed(2);
 
-            document.getElementById("waterValueAmount").innerHTML = "<br>" + displayAmount + " Liters/m^2";
+            document.getElementById("waterValueAmount").innerHTML = "<br>" + displayAmount + " Liters/m²";
         }
     </script>
 

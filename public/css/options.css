@@ -45,6 +45,12 @@ body {
     padding-bottom: 5em;
 }
 
+#historyChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /*--------------------Card overlay code block--------------------*/
 

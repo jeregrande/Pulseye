@@ -58,7 +58,7 @@
         </div>
         <div class="list-group-flush" id="network-list">
             <a href="#" class="list-group-item list-group-item-action active">Backyard Network</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Empty Network</a>
+            <a href="#" class="list-group-item list-group-item-action disabled">Front Lawn</a>
             <a href="#" class="list-group-item list-group-item-action disabled">Empty Network</a>
             <a href="#" class="list-group-item list-group-item-action disabled">Empty Network</a>
             <a href="#" class="list-group-item list-group-item-action disabled">Empty Network</a>
@@ -70,7 +70,7 @@
             <h4>Select a date</h4>
         </div>
         <div class="list-group-flush" id="history-list">
-            <a href="#" class="list-group-item list-group-item-action active">10/01/2019</a>
+            <a href="#" class="list-group-item list-group-item-action active">11/01/2019</a>
             <a href="#" class="list-group-item list-group-item-action disabled">Empty date</a>
             <a href="#" class="list-group-item list-group-item-action disabled">Empty date</a>
             <a href="#" class="list-group-item list-group-item-action disabled">Empty date</a>
@@ -78,9 +78,9 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="historyChart">
         <!-- History card block -->
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-8 col-md-8 col-lg-8">
             <div class="card" id="card-history">
                 <div class="card-body">
 
@@ -91,17 +91,17 @@
                     <div class="row">
                         <div class="col">
                             <ul class="list-group list-group-flush" id="card-column-labels">
-                                <li class="list-group-item">Avg temp:</li>
-                                <li class="list-group-item">Avg humidity:</li>
-                                <li class="list-group-item">Avg radiation:</li>
+                                <li class="list-group-item">Weekly average temp:</li>
+                                <li class="list-group-item">Weekly average moisture:</li>
+                                <li class="list-group-item">Weekly average humidity:</li>
                             </ul>
                         </div>
 
                         <div class="col">
                             <ul class="list-group list-group-flush" id="card-column-values">
-                                <li class="list-group-item">25°</li>
+                                <li class="list-group-item">26°</li>
                                 <li class="list-group-item">10%</li>
-                                <li class="list-group-item">1000 W/m²</li>
+                                <li class="list-group-item">5%</li>
                             </ul>
                         </div>
                     </div>
@@ -112,29 +112,29 @@
 
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
+
+
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday'],
                 datasets: [{
-                    label: '# of Thingies',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    label: 'Temperature',
+                    data: [25, 26, 25, 25, 26, 27],
+                    backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                    borderColor: 'rgba(255, 0, 0, 1)',
+                    borderWidth: 1
+                }, {
+                    label: "Moisture",
+                    data: [11, 9, 10, 10, 9, 11],
+                    backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                    borderColor: 'rgba(0, 255, 0, 1)',
+                    borderWidth: 1
+                }, {
+                    label: "Humidity",
+                    data: [5, 4, 6, 5, 4, 5],
+                    backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                    borderColor: 'rgba(0, 0, 255, 1)',
                     borderWidth: 1
                 }]
             },

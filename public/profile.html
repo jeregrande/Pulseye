@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/options.css">
     <link rel="shortcut icon" href="favicon.ico">
+
+    <!--Firebase scripts-->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -54,28 +58,28 @@
     <!-- Edit info forms-->
     <div class="container" id="profile-form-container">
         <div class="container">
-            <form id="profile-form">
+            <div id="profile-form">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New email">
+                    <input type="email" class="form-control" id="profileInputEmail" aria-describedby="emailHelp" placeholder="New email">
                     <small id="emailHelp" class="form-text text-muted">Enter your new email address.</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <button class="btn btn-primary" id="profileEmailButton">Submit</button>
+            </div>
         </div>
         <!-- Edit info form-->
         <div class="container">
-            <form id="profile-form">
+            <div id="profile-form">
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter new password">
+                    <input type="password" class="form-control" id="profileInputPasswordFirst" placeholder="Enter new password">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm new password">
+                    <input type="password" class="form-control" id="profileInputPasswordConfirm" placeholder="Confirm new password">
                     <small id="emailHelp" class="form-text text-muted">Change your password.</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <button class="btn btn-primary" id="profilePasswordButton">Submit</button>
+            </div>
         </div>
     </div>
 
@@ -87,6 +91,10 @@
     </footer>
 
     <!-- Optional JavaScript -->
+
+    <!-- Import firebase app file-->
+    <script src="js/profile.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
