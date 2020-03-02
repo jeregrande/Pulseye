@@ -25,4 +25,3 @@ Languages:		HTML, CSS, JS
 Backend:		Firebase
 Frontend libraries:	Bootstrap, chart.js
 Backend libraries:	Axios, Node, Cheerio
-Version checking:	Github
