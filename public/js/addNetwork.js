@@ -1,8 +1,8 @@
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
-    apiKey: 'AIzaSyDvgR8evc6xOcAp-1BvHvIrpPu5nlr-4pA',
-    authDomain: 'pulseye-ec283.firebaseapp.com',
-    projectId: 'pulseye-ec283'
+    apiKey: '',
+    authDomain: '',
+    projectId: ''
 });
 
 //Firestore reference
